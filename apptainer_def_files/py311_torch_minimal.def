@@ -1,0 +1,31 @@
+Bootstrap: docker
+From: busybox:1.36.1-glibc
+
+%environment
+  export PATH="$PATH:/usr/local/bin"
+
+%post
+  mkdir -p /app
+  mkdir -p /usr/local/bin
+
+  # Download Python
+  wget https://www.python.org/ftp/python/3.11.1/Python-3.11.1.tgz -O /app/python.tgz
+  tar -xzf /app/python.tgz -C /app
+  cd /app/Python-3.11.1
+  ./configure --prefix=/usr/local
+  make
+  make install
+
+  # Install pip
+  wget https://bootstrap.pypa.io/get-pip.py -O /app/get-pip.py
+  python3 /app/get-pip.py
+
+  # Install dependencies
+  echo "Installing Python dependencies..."
+  python3 -m ensurepip --upgrade
+  python3 -m pip install numpy
+  # python3 -m pip install torch torchvision torchaudio lightning tensorboard pycocotools matplotlib
+
+%runscript
+  echo "This is the runscript"
+  exec "$@"

@@ -1,37 +1,21 @@
 Bootstrap: docker
-
-From: ubuntu:22.04
-
-%environment
-  PATH="$PATH:/usr/local/bin"
+#From: python:latest
+From: python:3.11-slim
 
 %post
   mkdir /app
-  # cd /app
 
-  apt-get update && apt-get install -y python3 python3-pip
-  apt-get install -y python3.11 python3.11-venv
-
-  # change the default python version
-  # update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
-
-  # change directory to the home directory
-
-  # Install a specific python package
-  python3.11 -m venv /app/venv
+  python -m venv /app/venv
 
   # activate the virtual environment
-  . /app/venv/bin/activate 
-  # pip install numpy
-  pip install torch torchvision torchaudio
-  pip install lightning tensorboard 
-  pip install pycocotools matplotlib
+  . /app/venv/bin/activate
 
+  # Install dependencies
+  echo "Installing Python dependencies..."
+  # pip install --no-cache-dir pycocotools
+  pip install --no-cache-dir torch torchvision torchaudio lightning tensorboard pycocotools matplotlib
 
 %runscript
-  # echo "This is the runscript"
   . /app/venv/bin/activate
+  # echo "This is the runscript"
   exec "$@"
-
-%help
-  This container provides a Python 3.11 environment with torch, torchvision, torchaudio, lightning, tensorboard, pycocotools, matplotlib. The venv is located at /app/venv and is activated by default.

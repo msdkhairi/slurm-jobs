@@ -8,7 +8,7 @@ From: alpine:latest
   mkdir /app
 
   # Install Python and pip
-  apk add --no-cache python3 py3-pip
+  apk add --update --no-cache python3
 
   python3 -m venv /app/venv
 
@@ -17,8 +17,8 @@ From: alpine:latest
 
   # Install dependencies
   echo "Installing Python dependencies..."
-  python3 -m pip install numpy
-  python3 -m pip install torch torchvision torchaudio lightning tensorboard pycocotools matplotlib
+  # pip install numpy
+  pip install torch torchvision torchaudio lightning tensorboard pycocotools matplotlib
 
 %runscript
   . /app/venv/bin/activate
