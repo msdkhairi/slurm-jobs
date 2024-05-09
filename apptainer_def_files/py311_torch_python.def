@@ -1,0 +1,21 @@
+Bootstrap: docker
+#From: python:latest
+From: python:3.11-slim
+
+%post
+  mkdir /app
+
+  python -m venv /app/venv
+
+  # activate the virtual environment
+  . /app/venv/bin/activate
+
+  # Install dependencies
+  echo "Installing Python dependencies..."
+  # pip install --no-cache-dir pycocotools
+  pip install --no-cache-dir torch torchvision torchaudio lightning tensorboard pycocotools matplotlib
+
+%runscript
+  . /app/venv/bin/activate
+  # echo "This is the runscript"
+  exec "$@"
