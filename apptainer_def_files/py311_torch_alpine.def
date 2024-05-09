@@ -1,0 +1,26 @@
+Bootstrap: docker
+From: alpine:latest
+
+%environment
+  export PATH="$PATH:/usr/local/bin"
+
+%post
+  mkdir /app
+
+  # Install Python and pip
+  apk add --no-cache python3 py3-pip
+
+  python3 -m venv /app/venv
+
+  # activate the virtual environment
+  . /app/venv/bin/activate
+
+  # Install dependencies
+  echo "Installing Python dependencies..."
+  python3 -m pip install numpy
+  python3 -m pip install torch torchvision torchaudio lightning tensorboard pycocotools matplotlib
+
+%runscript
+  . /app/venv/bin/activate
+  # echo "This is the runscript"
+  exec "$@"
