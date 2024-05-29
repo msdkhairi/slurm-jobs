@@ -7,12 +7,6 @@ From: python:3.11
   # Create the app directory
   mkdir -p /app
 
-  # Create a virtual environment
-  python -m venv /app/venv
-
-  # Activate the virtual environment
-  . /app/venv/bin/activate
-
   # Upgrade pip
   pip install --upgrade pip
 
@@ -20,10 +14,6 @@ From: python:3.11
   echo "Installing Python dependencies..."
   pip install --no-cache-dir torch torchvision torchaudio lightning tensorboard pycocotools matplotlib mlflow
 
-
 %runscript
-  # Activate the virtual environment
-  . /app/venv/bin/activate
-  
   # Run the given command
   exec "$@"

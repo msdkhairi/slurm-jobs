@@ -1,0 +1,31 @@
+Bootstrap: docker
+#From: python:latest
+From: python:3.11-slim
+
+%post
+  mkdir -p /opt
+  echo "Installing required packages..."
+  apt-get update && apt-get install -y libc6 libhdf5-103-1 libhdf5-hl-100 liblz4-1 libreadline8 slurm-wlm-basic-plugins munge
+
+  # Clean up
+  apt-get clean
+  #rm -rf /var/lib/apt/lists/*
+  #rm -rf /tmp/*
+
+  # Set up the virtual environment
+  mkdir /app
+
+  python -m venv /app/venv
+
+  # activate the virtual environment
+  . /app/venv/bin/activate
+
+  # Install dependencies
+  echo "Installing Python dependencies..."
+  # pip install --no-cache-dir pycocotools
+  pip install --no-cache-dir torch torchvision torchaudio lightning tensorboard pycocotools matplotlib
+
+%runscript
+  . /app/venv/bin/activate
+  # echo "This is the runscript"
+  exec "$@"
