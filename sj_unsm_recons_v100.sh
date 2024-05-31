@@ -5,7 +5,7 @@
 #SBATCH --nodes=4
 #SBATCH --gpus-per-node=v100l:4
 #SBATCH --ntasks-per-node=4
-#SBATCH --cpus-per-task=8    # 24 P100, 32 V100
+#SBATCH --cpus-per-task=8    # 24 p100l, 32 v100l, 40 v100 beluga
 #SBATCH --mem=0               # Request the full memory of the node
 #SBATCH --time=06-11:55           # time (DD-HH:MM)
 # --------------------------
