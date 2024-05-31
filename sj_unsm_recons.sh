@@ -51,7 +51,6 @@ python train.py \
 --datamodule.data-dir $DATA_DIR \
 --datamodule.batch-size 3 \
 --datamodule.num-workers $((SLURM_NTASKS_PER_NODE * SLURM_CPUS_PER_TASK)) \
---datamodule.persistent-workers True \
 --litmodel.learning-rate 0.0004 \
 --checkpoint-callback.dirpath "checkpoints_unisam_reconstruction/" \
 --checkpoint-callback.monitor "val_loss" \
