@@ -1,0 +1,19 @@
+Bootstrap: docker
+#From: python:latest
+#From: python:3.11-slim
+From: python:3.10
+
+%post
+  # Create the app directory in /home within the container's filesystem
+  mkdir -p app
+
+  # Upgrade pip
+  pip install --no-cache-dir --upgrade pip
+
+  # Install dependencies
+  echo "Installing Python dependencies..."
+  pip install --no-cache-dir torch torchvision torchaudio lightning tensorboard pycocotools matplotlib
+
+%runscript
+  # Run the given command
+  exec "$@"

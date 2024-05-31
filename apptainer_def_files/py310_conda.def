@@ -1,0 +1,18 @@
+Bootstrap: docker
+From: continuumio/miniconda3
+
+%post
+  TMPDIR=$(mktemp -d) conda create -n myenv python=3.11 pytorch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 pytorch-cuda=12.1 lightning=2.2.4 pycocotools matplotlib tensorboard mlflow cuda-cudart cuda-version=12 -c pytorch -c nvidia -c conda-forge -y 
+  #conda create -n myenv python=3.10 numpy -c conda-forge -y
+
+  # Create a directory for environment scripts
+  mkdir -p /project/env
+
+# Create a script to initialize conda, activate the environment, and then run the command
+%environment
+  source activate myenv
+
+%runscript
+  # Run the command using the script
+  source activate myenv
+  exec "$@"

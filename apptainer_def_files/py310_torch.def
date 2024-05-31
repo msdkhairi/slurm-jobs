@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: python:3.11
+From: python:3.10
 
 %post
   # Create the app directory at the top level of the container's filesystem
@@ -19,8 +19,7 @@ From: python:3.11
 
   # Install dependencies
   echo "Installing Python dependencies..."
-  pip install --no-cache-dir torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu121 
-  pip install --no-cache-dir lightning==2.2.4 tensorboard pycocotools matplotlib mlflow cuda-python
+  pip install --no-cache-dir torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu121 lightning=2.2.4 tensorboard pycocotools matplotlib mlflow
   #pip install --no-cache-dir torch torchvision torchaudio lightning=2.2.4 tensorboard pycocotools matplotlib mlflow
 
 %environment
