@@ -50,7 +50,7 @@ python train.py \
 --trainer.accumulate-grad-batches 1 \
 --datamodule.data-dir $DATA_DIR \
 --datamodule.batch-size 3 \
---datamodule.num-workers $SLURM_CPUS_PER_TASK \
+--datamodule.num-workers $((SLURM_GPUS_PER_NODE * SLURM_CPUS_PER_TASK)) \
 --litmodel.learning-rate 0.0004 \
 --checkpoint-callback.dirpath "checkpoints_unisam_reconstruction/" \
 --checkpoint-callback.monitor "val_loss" \
