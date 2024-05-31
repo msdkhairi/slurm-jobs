@@ -49,7 +49,7 @@ python train.py \
 --trainer.max-epochs 100 \
 --trainer.accumulate-grad-batches 1 \
 --datamodule.data-dir $DATA_DIR \
---datamodule.batch-size 6 \
+--datamodule.batch-size 3 \
 --datamodule.num-workers $SLURM_CPUS_PER_TASK \
 --litmodel.learning-rate 0.0004 \
 --checkpoint-callback.dirpath "checkpoints/" \
