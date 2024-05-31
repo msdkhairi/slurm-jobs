@@ -52,7 +52,7 @@ python train.py \
 --datamodule.batch-size 3 \
 --datamodule.num-workers $SLURM_CPUS_PER_TASK \
 --litmodel.learning-rate 0.0004 \
---checkpoint-callback.dirpath "checkpoints/" \
+--checkpoint-callback.dirpath "checkpoints_unisam_reconstruction/" \
 --checkpoint-callback.monitor "val_loss" \
 --logger.save-dir "logs/" \
---logger.name "unisam-reconstruction" \
+--logger.name "unisam_reconstruction" \
