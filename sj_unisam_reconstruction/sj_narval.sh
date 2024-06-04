@@ -27,7 +27,6 @@ nvidia-smi
 
 srun mkdir -p $SLURM_TMPDIR/apptainer/workdir
 srun mkdir -p $SLURM_TMPDIR/data/coco2017
-
 #export CUDA_VISIBLE_DEVICES=[0,1,2,3]
 
 DATA_DIR="/scratch/mka267/data/coco2017"
