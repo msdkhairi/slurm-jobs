@@ -36,7 +36,7 @@ srun apptainer run \
 --contain \
 --nv \
 --bind /project/def-ibajic/mka267/workspace/UnivCollabSFU24:$PROJECT_HOME/unisam \
---bind /scratch/mka267/workspace-scratch/coco2017:$DATA_DIR \
+--bind /scratch/mka267/data/coco2017:$DATA_DIR \
 --workdir $SLURM_TMPDIR/apptainer/workdir \
 --pwd $PROJECT_HOME/unisam \
 ./py311_torch.sif \
