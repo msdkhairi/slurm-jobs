@@ -2,12 +2,12 @@
 #SBATCH --account=def-ibajic
 #SBATCH --mail-user=compute@masoudka.com
 #SBATCH --mail-type=ALL
-#SBATCH --nodes=8
+#SBATCH --nodes=2
 #SBATCH --gpus-per-node=v100:4
 #SBATCH --ntasks-per-node=4
 #SBATCH --cpus-per-task=10    # 24 p100l, 32 v100l, 40 v100 beluga
 #SBATCH --mem=0               # Request the full memory of the node
-#SBATCH --time=06-11:55           # time (DD-HH:MM)
+#SBATCH --time=03-11:55           # time (DD-HH:MM)
 # --------------------------
 
 # Print the current date and time
