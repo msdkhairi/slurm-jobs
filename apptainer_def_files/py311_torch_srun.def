@@ -29,4 +29,3 @@ From: python:3.11-slim
   . /app/venv/bin/activate
   # echo "This is the runscript"
   exec "$@"
-
