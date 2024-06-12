@@ -2,11 +2,11 @@ FROM python:3.11
 
 # Install necessary packages
 RUN apt-get update && \
-    apt-get install -y git curl tmux htop nano vim && \
+    apt-get install -y git curl tmux htop nano vim ninja-build && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Add ssh-ccdb function to .bashrc
+# Add ssh-ccdb function to .bashrc to connect to CCDB servers (cedar, beluga, narval)
 RUN echo 'ssh-ccdb() {\n    local server\n    case $1 in\n        cedar)\n            server="cedar.alliancecan.ca"\n            ;;\n        beluga)\n            server="beluga.alliancecan.ca"\n            ;;\n        narval)\n            server="narval.alliancecan.ca"\n            ;;\n        *)\n            echo "Usage: ssh-ccdb {cedar|beluga|narval}"\n            return 1\n            ;;\n    esac\n    ssh mka267@$server\n}' >> ~/.bashrc
 
 # Enable color support for ls and grep in .bashrc
@@ -23,7 +23,6 @@ RUN echo 'export LESS=" -R"' >> ~/.bashrc
 
 # Enable color in the prompt for bash >= 4.0
 RUN echo 'force_color_prompt=yes\nif [ -n "$force_color_prompt" ]; then\n    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then\n        color_prompt=yes\n    else\n        color_prompt=\n    fi\nfi\n\nif [ "$color_prompt" = yes ]; then\n    PS1="\\${debian_chroot:+(\$debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ "\nelse\n    PS1="\\${debian_chroot:+(\$debian_chroot)}\\u@\\h:\\w\\$ "\nfi\nunset color_prompt force_color_prompt' >> ~/.bashrc
-
 
 # Install VSCode CLI
 RUN curl -sL "https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64" \
