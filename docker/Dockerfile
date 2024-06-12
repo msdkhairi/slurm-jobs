@@ -1,11 +1,29 @@
-# FROM ubuntu:22.04
 FROM python:3.11
 
 # Install necessary packages
 RUN apt-get update && \
-    apt-get install -y git curl tmux htop && \
+    apt-get install -y git curl tmux htop nano vim && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+# Add ssh-ccdb function to .bashrc
+RUN echo 'ssh-ccdb() {\n    local server\n    case $1 in\n        cedar)\n            server="cedar.alliancecan.ca"\n            ;;\n        beluga)\n            server="beluga.alliancecan.ca"\n            ;;\n        narval)\n            server="narval.alliancecan.ca"\n            ;;\n        *)\n            echo "Usage: ssh-ccdb {cedar|beluga|narval}"\n            return 1\n            ;;\n    esac\n    ssh mka267@$server\n}' >> ~/.bashrc
+
+# Enable color support for ls and grep in .bashrc
+RUN echo 'if [ -x /usr/bin/dircolors ]; then\n    eval "$(dircolors -b)"\n    alias ls="ls --color=auto"\n    alias grep="grep --color=auto"\n    alias fgrep="fgrep --color=auto"\n    alias egrep="egrep --color=auto"\nfi' >> ~/.bashrc
+
+# Add custom colored prompt to .bashrc
+RUN echo 'PS1="\\[\\e[0;32m\\]\\u@\\h\\[\\e[m\\]:\\[\\e[0;34m\\]\\w\\[\\e[m\\]\\$ "' >> ~/.bashrc
+
+# Enable colored output for less in .bashrc
+RUN echo 'export LESS=" -R"' >> ~/.bashrc
+
+# Enable git prompt support if available
+#RUN echo 'if [ -f /usr/share/git/completion/git-prompt.sh ]; then\n    . /usr/share/git/completion/git-prompt.sh\n    PS1="\\[\\e[32m\\]\\u@\\h \\[\\e[33m\\]\\W$(__git_ps1 \" (%s)\")\\[\\e[0m\\]]\\$ "\nfi' >> ~/.bashrc
+
+# Enable color in the prompt for bash >= 4.0
+RUN echo 'force_color_prompt=yes\nif [ -n "$force_color_prompt" ]; then\n    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then\n        color_prompt=yes\n    else\n        color_prompt=\n    fi\nfi\n\nif [ "$color_prompt" = yes ]; then\n    PS1="\\${debian_chroot:+(\$debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$ "\nelse\n    PS1="\\${debian_chroot:+(\$debian_chroot)}\\u@\\h:\\w\\$ "\nfi\nunset color_prompt force_color_prompt' >> ~/.bashrc
+
 
 # Install VSCode CLI
 RUN curl -sL "https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64" \
@@ -24,7 +42,7 @@ RUN git config --global user.email "msdkhairi@gmail.com" && \
     git config --global user.name "Masoud KA"
 
 # Ensure the virtual environment is activated when the container starts
-#ENV VIRTUAL_ENV=/opt/venv
-#ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+# ENV VIRTUAL_ENV=/opt/venv
+# ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 CMD ["code", "tunnel"]
