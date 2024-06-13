@@ -37,7 +37,7 @@ RUN python -m venv /home/venv && \
     pip install --no-cache-dir torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu121 && \
     pip install --no-cache-dir lightning tensorboard pycocotools matplotlib mlflow cuda-python torchmetrics ipykernel
 
-RUN git config --global user.email "msdkhairi@gmail.com" && \
+RUN git config --global user.email "git@masoudka.com" && \
     git config --global user.name "Masoud KA"
 
 # Ensure the virtual environment is activated when the container starts
