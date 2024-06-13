@@ -41,7 +41,7 @@ RUN git config --global user.email "git@masoudka.com" && \
     git config --global user.name "Masoud KA"
 
 # Ensure the virtual environment is activated when the container starts
-# ENV VIRTUAL_ENV=/opt/venv
+# ENV VIRTUAL_ENV=/home/venv
 # ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 CMD ["code", "tunnel"]
