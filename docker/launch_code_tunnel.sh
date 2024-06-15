@@ -6,4 +6,4 @@ docker run --cpus=60 \
            --volume /data/datasets:/home/data \
            --workdir /home/workspace/ \
            --name code-torch \
-           code-tunnel:v0.6
+           code-tunnel:v0.8
