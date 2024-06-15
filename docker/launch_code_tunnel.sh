@@ -1,4 +1,5 @@
-docker run --cpus=60 \
+docker run --user=$(id -u):$(id -g)
+           --cpus=60 \
            --memory=240g \
            --memory-swap=240g \
            --gpus=8 \
@@ -6,4 +7,4 @@ docker run --cpus=60 \
            --volume /data/datasets:/home/data \
            --workdir /home/workspace/ \
            --name code-torch \
-           code-tunnel:v0.8
+           code-tunnel:v0.9
