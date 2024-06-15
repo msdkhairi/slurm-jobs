@@ -31,9 +31,9 @@ RUN curl -sL "https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
     rm /tmp/vscode-cli.tar.gz
 
 # Create a virtual environment and install PyTorch
-RUN python -m venv /home/venv && \
-    . /home/venv/bin/activate && \
-    pip install --upgrade pip && \
+# RUN python -m venv /home/venv && \
+#     . /home/venv/bin/activate && \
+RUN pip install --upgrade pip && \
     pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 && \
     pip install --no-cache-dir lightning tensorboard pycocotools matplotlib mlflow cuda-python torchmetrics ipykernel opencv-python
 
