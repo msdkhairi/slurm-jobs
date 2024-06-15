@@ -2,7 +2,7 @@ FROM python:3.11
 
 # Install necessary packages
 RUN apt-get update && \
-    apt-get install -y git curl tmux htop nano vim ninja-build && \
+    apt-get install -y git curl tmux htop nano vim ninja-build libgl1-mesa-glx && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -34,7 +34,7 @@ RUN curl -sL "https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
 RUN python -m venv /home/venv && \
     . /home/venv/bin/activate && \
     pip install --upgrade pip && \
-    pip install --no-cache-dir torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu121 && \
+    pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 && \
     pip install --no-cache-dir lightning tensorboard pycocotools matplotlib mlflow cuda-python torchmetrics ipykernel opencv-python
 
 RUN git config --global user.email "git@masoudka.com" && \
