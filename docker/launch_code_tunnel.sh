@@ -1,4 +1,4 @@
-docker run --user=$(id -u):$(id -g)
+docker run --user=$(id -u):$(id -g) \
            --cpus=60 \
            --memory=240g \
            --memory-swap=240g \
