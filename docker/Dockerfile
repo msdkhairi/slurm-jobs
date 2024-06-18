@@ -2,7 +2,14 @@ FROM python:3.11
 
 # Install necessary packages
 RUN apt-get update && \
-    apt-get install -y git curl tmux htop nano vim ninja-build libgl1-mesa-glx && \
+    DEBIAN_FRONTEND=noninteractive  apt-get install -y --no-install-recommends \
+    git \
+    curl \
+    tmux \
+    htop \
+    nano \
+    vim \
+    ninja-build && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -35,7 +42,7 @@ RUN curl -sL "https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
 #     . /home/venv/bin/activate && \
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 && \
-    pip install --no-cache-dir lightning tensorboard pycocotools matplotlib mlflow cuda-python torchmetrics ipykernel opencv-python
+    pip install --no-cache-dir lightning tensorboard pycocotools matplotlib mlflow cuda-python torchmetrics ipykernel
 
 RUN git config --global user.email "git@masoudka.com" && \
     git config --global user.name "Masoud KA"
