@@ -51,4 +51,4 @@ RUN git config --global user.email "git@masoudka.com" && \
 # ENV VIRTUAL_ENV=/home/venv
 # ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-CMD ["code", "tunnel"]
+# CMD ["code", "tunnel"]
