@@ -19,8 +19,8 @@ From: python:3.11
 
   # Install dependencies
   echo "Installing Python dependencies..."
-  pip install --no-cache-dir torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu121 
-  pip install --no-cache-dir lightning==2.2.4 tensorboard pycocotools matplotlib mlflow cuda-python torchmetrics
+  pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 
+  pip install --no-cache-dir lightning tensorboard pycocotools matplotlib mlflow cuda-python torchmetrics opencv-python-headless
 
 %environment
   # Set the environment variable to activate the virtual environment by default
