@@ -42,7 +42,15 @@ RUN curl -sL "https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
 #     . /home/venv/bin/activate && \
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 && \
-    pip install --no-cache-dir lightning tensorboard pycocotools matplotlib mlflow cuda-python torchmetrics ipykernel
+    pip install --no-cache-dir lightning \
+                               tensorboard \
+                               pycocotools \
+                               matplotlib \
+                               mlflow \
+                               cuda-python \
+                               torchmetrics \
+                               ipykernel \
+                               opencv-python-headless
 
 RUN git config --global user.email "git@masoudka.com" && \
     git config --global user.name "Masoud KA"
