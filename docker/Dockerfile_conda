@@ -6,6 +6,7 @@ RUN apt-get update && \
     git \
     curl \
     build-essential \
+    pipx \
     tmux \
     htop \
     nano \
