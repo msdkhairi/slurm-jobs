@@ -4,6 +4,7 @@ docker run --cpus=60 \
            --shm-size=64g \
            --gpus=8 \
            --volume /localhome/mka267/workspace:/home/workspace \
+           --volume /localhome/mka267/mlruns:/home/mlruns \
            --volume /data/datasets:/home/data \
            --workdir /home/workspace/ \
            --name conda-code \
