@@ -6,6 +6,6 @@ docker run --cpus=60 \
            --volume /localhome/mka267/workspace:/home/workspace \
            --volume /data/datasets:/home/data \
            --workdir /home/workspace/ \
-           --name code-torch \
-           dev-torch:v1.0 \
+           --name conda-code \
+           conda-code:v1.0 \
            code tunnel
