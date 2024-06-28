@@ -8,5 +8,5 @@ docker run --cpus=60 \
            --volume /data/datasets:/home/data \
            --workdir /home/workspace/ \
            --name conda-code \
-           conda-code:v1.0 \
+           msdkhairi/conda-code:v1.0 \
            code tunnel
