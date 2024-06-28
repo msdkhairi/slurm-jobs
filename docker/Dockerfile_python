@@ -57,6 +57,8 @@ RUN curl -o ~/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest
 # Put conda in path
 ENV PATH=$CONDA_DIR/bin:$PATH
 
+RUN rm ~/miniconda.sh
+
 RUN conda init bash
 RUN conda config --set auto_activate_base false
 
