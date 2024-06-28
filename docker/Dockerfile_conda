@@ -35,7 +35,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN pipx ensurepath && \
-    pipx install poetry
+    pipx install poetry && \
+    pipx install virtualenv && \
+    pipx install pipenv
 
 # Add ssh-ccdb function to .bashrc to connect to CCDB servers (cedar, beluga, narval)
 RUN echo 'ssh-ccdb() {\n    local server\n    case $1 in\n        cedar)\n            server="cedar.alliancecan.ca"\n            ;;\n        beluga)\n            server="beluga.alliancecan.ca"\n            ;;\n        narval)\n            server="narval.alliancecan.ca"\n            ;;\n        *)\n            echo "Usage: ssh-ccdb {cedar|beluga|narval}"\n            return 1\n            ;;\n    esac\n    ssh mka267@$server\n}' >> ~/.bashrc
