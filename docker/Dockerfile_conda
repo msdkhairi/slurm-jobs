@@ -1,4 +1,4 @@
-FROM continuumio/anaconda3
+FROM continuumio/miniconda3
 
 # Install necessary packages
 ARG         DEBIAN_FRONTEND=noninteractive
