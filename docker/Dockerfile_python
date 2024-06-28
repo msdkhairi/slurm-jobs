@@ -50,7 +50,8 @@ RUN curl -sL "https://code.visualstudio.com/sha/download?build=stable&os=cli-alp
 
 # Install miniconda
 ENV CONDA_DIR=/opt/conda
-RUN curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+
+RUN curl -o ~/miniconda.shhttps://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda
 
 # Put conda in path
