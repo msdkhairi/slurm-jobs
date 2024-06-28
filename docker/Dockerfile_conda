@@ -1,8 +1,10 @@
 FROM continuumio/anaconda3
 
 # Install necessary packages
+ARG         DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive  apt-get install -y --no-install-recommends \
+    apt-get install -y --no-install-recommends \
+    ca-certificates \
     git \
     curl \
     build-essential \
@@ -10,14 +12,30 @@ RUN apt-get update && \
     htop \
     nano \
     vim \
+    pipx \
+    libreadline-dev \
+    libncursesw5-dev \
+    libssl-dev \
+    libsqlite3-dev \
+    libgdbm-dev \
+    libc6-dev \
+    libbz2-dev \
+    libffi-dev \
+    libpq-dev \
+    liblzma-dev \
+    libopenblas-dev \
     libgl1-mesa-dev \
     libglib2.0-0 \
-    ffmpeg \
     libsm6 \
     libxext6 \
+    ffmpeg \
+    tk-dev \
     ninja-build && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN pipx ensurepath && \
+    pipx install poetry
 
 # Add ssh-ccdb function to .bashrc to connect to CCDB servers (cedar, beluga, narval)
 RUN echo 'ssh-ccdb() {\n    local server\n    case $1 in\n        cedar)\n            server="cedar.alliancecan.ca"\n            ;;\n        beluga)\n            server="beluga.alliancecan.ca"\n            ;;\n        narval)\n            server="narval.alliancecan.ca"\n            ;;\n        *)\n            echo "Usage: ssh-ccdb {cedar|beluga|narval}"\n            return 1\n            ;;\n    esac\n    ssh mka267@$server\n}' >> ~/.bashrc
