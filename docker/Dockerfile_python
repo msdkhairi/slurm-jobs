@@ -56,7 +56,8 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 # Put conda in path
 ENV PATH=$CONDA_DIR/bin:$PATH
 
-RUN conda init
+RUN conda init bash
+RUN conda config --set auto_activate_base false
 
 # Add ssh-ccdb function to .bashrc to connect to CCDB servers (cedar, beluga, narval)
 RUN echo 'ssh-ccdb() {\n    local server\n    case $1 in\n        cedar)\n            server="cedar.alliancecan.ca"\n            ;;\n        beluga)\n            server="beluga.alliancecan.ca"\n            ;;\n        narval)\n            server="narval.alliancecan.ca"\n            ;;\n        *)\n            echo "Usage: ssh-ccdb {cedar|beluga|narval}"\n            return 1\n            ;;\n    esac\n    ssh mka267@$server\n}' >> ~/.bashrc
